@@ -1,0 +1,48 @@
+{
+  "name": "electron-boilerplate",
+  "version": "0.0.1",
+  "description": "electron boilerplate with semantic-ui and pre baked modules and jquery",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=Icon/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . App Name --overwrite --asar=true --platform=win32 --arch=ia32 --icon=Icon/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"something something something\"",
+    "package-linux": "electron-packager . App Name --overwrite --asar=true --platform=linux --arch=x64 --icon=Icon/icon.png --prune=true --out=release-builds"
+  },
+  "author": "Wilbur Shearer",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "4.1.4",
+    "electron-builder": "^20.39.0",
+    "electron-packager": "^13.1.1",
+    "grunt-include-source": "^1.1.0"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
+    "@ckeditor/ckeditor5-upload": "^11.1.1",
+    "babel-polyfill": "^6.26.0",
+    "canvas": "^2.5.0",
+    "chart.js": "^2.8.0",
+    "electron-localshortcut": "^3.1.0",
+    "electron-settings": "^3.2.0",
+    "file-url": "^3.0.0",
+    "flat": "^4.1.0",
+    "install-peers": "^1.0.3",
+    "jquery": "^3.4.0",
+    "jsdom": "^14.0.0",
+    "json2csv": "^4.5.2",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
+    "nedb": "^1.8.0",
+    "open": "^6.4.0",
+    "papaparse": "^5.0.0",
+    "save": "^2.4.0",
+    "simple-statistics": "^7.0.5",
+    "stats-lite": "^2.2.0",
+    "ws": "^6.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

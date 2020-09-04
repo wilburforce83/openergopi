@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Import styling frameworks-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Application Name</title>
+    <link rel="stylesheet" href="../assets/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" href="../assets/jquery.dynatable.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/notifications/notifications.css">
+    <link rel="stylesheet" href="../assets/jquery-ui.css">
+
+    <!-- End Of Import styling frameworks-->
+
+
+    <!-- Insert this line above script imports  -->
+    <script>
+        if (typeof module === 'object') {
+            window.module = module;
+            module = undefined;
+        }
+    </script>
+    <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
+    <script src="../src/home/imports.js"></script>
+    <script src="../assets/notifications/notifications.js"></script>
+    <script src="../src/home/utils.js"></script>
+    <script src="../assets/jquery.dynatable.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../assets/moment.min.js"></script>
+    <script src="../assets/jquery.drawsvg.js"></script>
+    <script src="../assets/raphael-2.1.4.min.js"></script>
+    <script src="../assets/justgage.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>
+        if (window.module) module = window.module;
+    </script>
+
+
+    <!--Load Initial Page-->
+
+    <script>
+        // Loads html from index.html on load this is your home page use on click events to load other pages from menus
+        $(document).ready(function () {
+
+            $('#content').load("first_page.html");
+
+        });
+    </script>
+
+    <!-- Styling Overrides -->
+    <style>
+        html {
+            height: 100vh;
+            overflow: hidden;
+
+        }
+
+        #content {
+            margin-top: 0px;
+            width: 100%;
+
+            overflow: hidden;
+        }
+
+        #loading {
+            margin: 0;
+            position: fixed;
+
+            width: 100%;
+            height: 100vh;
+
+            background: rgb(255, 255, 255) url('../assets/images/spinner11.gif') no-repeat center center;
+            ;
+            z-index: 150000;
+
+        }
+
+        #loadingfooter {
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            z-index: 160000;
+
+        }
+
+        body {
+            background: rgb(248, 246, 246);
+        }
+    </style>
+
+    <!-- End Of Styling Overrides -->
+
+</head>
+
+<body>
+
+
+    <!-- Splashscreen -->
+    <div id="loading">
+
+        <div id="loadingfooter">
+            <h5 class="ui center aligned black header">
+
+                <div style="font-family: 'Comfortaa', cursive; font-weight:200; font-size: 4em" class="content">
+                    Application<sup>name</sup>
+                    <div class="black sub header"></div>
+                </div>
+            </h5>
+            <h5 class="ui center aligned black header">
+
+                <div style="font-family: 'Comfortaa', cursive; font-size: 1em" class="content">
+                    version info | Copyright 2019.
+                    <div class="black sub header"></div>
+                </div>
+            </h5>
+            <div class="ui hidden divider"></div>
+        </div>
+    </div>
+
+
+    <!-- End Of Splashscreen -->
+
+
+
+    <!-- Main Menu Header-->
+
+    <div id="fixedElement" style="border-style: none; margin-bottom: 0px;" class="ui top attached athenaMenu menu">
+
+
+        <div style="margin: 7px;" class="ui small buttons">
+
+            <button id="button1" title="Hover info" class="ui labelled icon button"><i class="columns icon"></i>
+                Button 1</button>
+
+            <button id="button2" title="Hover info" class="ui labelled icon button"><i class="pie chart icon"></i>Button
+                2</button>
+
+            <button id="button3" title="Hover info" class="ui labelled icon button"><i class="edit icon"></i>
+                Button 3</button>
+        </div>
+
+
+
+        <div style="border-style: none;" class="right menu">
+
+            <div id="rightButton1"></div>
+            <div style="margin: 7px;" class="ui small basic icon buttons">
+                <button title="Hover info" id="db" class="ui button"><i id="dbicon" class="database icon"></i></button>
+            </div>
+
+
+
+        </div>
+    </div>
+
+
+    <!-- End Of Main Menu Header-->
+
+    <!-- Main Application HTML is here!!!!-->
+
+    <div id="content"></div>
+
+
+
+
+    <!-- End Of main Application  HTML -->
+
+
+    <script>
+        //Splash Screen Jquery
+        $(document).ready(function () {
+
+
+
+            $('#loading').delay(4000).fadeOut(1000);
+
+            // any startup JS here!
+
+
+
+        });
+    </script>
+
+    <script>
+        // notification area
+
+        const successfulNotify = window.createNotification({
+
+            // close on click
+
+            closeOnClick: true,
+
+            showDuration: 3500,
+            positionClass: 'nfc-bottom-right',
+
+            theme: 'success'
+
+
+        });
+
+        const errorNotify = window.createNotification({
+
+            // close on click
+
+            closeOnClick: true,
+
+            showDuration: 3500,
+            positionClass: 'nfc-bottom-right',
+
+            theme: 'error'
+
+
+        });
+
+        // Electron Reload Settings
+
+        var reload = () => {
+            getCurrentWindow().reload()
+        }
+
+        globalShortcut.register('F5', reload);
+        globalShortcut.register('CommandOrControl+R', reload);
+        // here is the fix bug #3778, if you know alternative ways, please write them
+        window.addEventListener('beforeunload', () => {
+            globalShortcut.unregister('F5', reload);
+            globalShortcut.unregister('CommandOrControl+R', reload);
+        })
+
+
+
+
+
+
+
+        //Menu load functions
+
+        document.getElementById('button1').addEventListener('click', function (event) {
+
+            $('#content').load("first_page.html");
+
+        });
+
+        document.getElementById('button2').addEventListener('click', function (event) {
+
+            $('#content').load("second_page.html");
+
+        });
+
+
+        document.getElementById('button3').addEventListener('click', function (event) {
+
+            $('#content').load("third_page.html");
+
+        });
+
+        document.getElementById('rightButton1').addEventListener('click', function (event) {
+
+            alert('Woop an alert!');
+
+        });
+
+
+        //End of Menu load functions
+    </script>
+
+
+
+</body>
+
+
+
+
+
+
+
+</html>
