@@ -6,8 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Application Name</title>
+    <title>OpenErgo</title>
     <link rel="stylesheet" href="../assets/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" href="../lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="../lib/onsen/css/onsen-css-components.min.css">
     <link rel="stylesheet" href="../assets/jquery.dynatable.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
 
@@ -25,14 +27,14 @@
         }
     </script>
     <script src="../assets/jquery.min.js"></script>
+    <script src="../assets/jquery-ui.js"></script>
     <script src="../assets/Semantic-UI-CSS-master/semantic.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="../lib/onsen/js/onsenui.min.js"></script>
 
     <script src="../src/home/imports.js"></script>
     <script src="../assets/notifications/notifications.js"></script>
     <script src="../src/home/utils.js"></script>
     <script src="../assets/jquery.dynatable.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="../assets/moment.min.js"></script>
     <script src="../assets/jquery.drawsvg.js"></script>
     <script src="../assets/raphael-2.1.4.min.js"></script>
@@ -44,30 +46,23 @@
     </script>
 
 
-    <!--Load Initial Page-->
-
-    <script>
-        // Loads html from index.html on load this is your home page use on click events to load other pages from menus
-        $(document).ready(function () {
-
-            $('#content').load("first_page.html");
-
-        });
-    </script>
-
-    <!-- Styling Overrides -->
     <style>
-        html {
-            height: 100vh;
-            overflow: hidden;
+        .overlay {
+            position: absolute;
+            top: 13%;
+            /* position the top  edge of the element at the middle of the parent */
+            left: 40%;
+            /* position the left edge of the element at the middle of the parent */
 
+
+
+            z-index: 1000;
+
+            /*dim the background*/
         }
 
-        #content {
-            margin-top: 0px;
-            width: 100%;
-
-            overflow: hidden;
+        h5 {
+            color: rgb(32, 32, 32);
         }
 
         #loading {
@@ -77,10 +72,9 @@
             width: 100%;
             height: 100vh;
 
-            background: rgb(255, 255, 255) url('../assets/images/spinner11.gif') no-repeat center center;
+            background: rgb(255, 255, 255) url('../assets/images/Loading.gif') no-repeat center center;
             ;
             z-index: 150000;
-
         }
 
         #loadingfooter {
@@ -88,192 +82,388 @@
             bottom: 0%;
             width: 100%;
             z-index: 160000;
-
-        }
-
-        body {
-            background: rgb(248, 246, 246);
         }
     </style>
-
-    <!-- End Of Styling Overrides -->
 
 </head>
 
 <body>
 
-
-    <!-- Splashscreen -->
     <div id="loading">
 
         <div id="loadingfooter">
+
             <h5 class="ui center aligned black header">
 
-                <div style="font-family: 'Comfortaa', cursive; font-weight:200; font-size: 4em" class="content">
-                    Application<sup>name</sup>
-                    <div class="black sub header"></div>
-                </div>
-            </h5>
-            <h5 class="ui center aligned black header">
-
-                <div style="font-family: 'Comfortaa', cursive; font-size: 1em" class="content">
-                    version info | Copyright 2019.
+                <div style="font-family: 'Comfortaa', cursive; font-size: 0.7em" class="content">
+                    V0.001 OpenErgo | Opensource Ergo Monitor.
                     <div class="black sub header"></div>
                 </div>
             </h5>
             <div class="ui hidden divider"></div>
         </div>
+
+
+
     </div>
 
-
-    <!-- End Of Splashscreen -->
-
+    <ons-navigator swipeable id="myNavigator" page="bot.html"></ons-navigator>
 
 
-    <!-- Main Menu Header-->
+    <template id="bot.html">
 
-    <div id="fixedElement" style="border-style: none; margin-bottom: 0px;" class="ui top attached athenaMenu menu">
+        <ons-page id="bot">
+            <ons-toolbar>
 
+                <div class="left">
+                    <ons-toolbar-button id="settings" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41)" icon="md-settings"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div style="margin-right: 5% " class="right">
+                    OpenErgo
+                </div>
 
-        <div style="margin: 7px;" class="ui small buttons">
-
-            <button id="button1" title="Hover info" class="ui labelled icon button"><i class="columns icon"></i>
-                Button 1</button>
-
-            <button id="button2" title="Hover info" class="ui labelled icon button"><i class="pie chart icon"></i>Button
-                2</button>
-
-            <button id="button3" title="Hover info" class="ui labelled icon button"><i class="edit icon"></i>
-                Button 3</button>
-        </div>
-
+            </ons-toolbar>
 
 
-        <div style="border-style: none;" class="right menu">
+            <div style=" margin:7px" class=" container">
 
-            <div id="rightButton1"></div>
-            <div style="margin: 7px;" class="ui small basic icon buttons">
-                <button title="Hover info" id="db" class="ui button"><i id="dbicon" class="database icon"></i></button>
             </div>
 
 
 
-        </div>
-    </div>
+            <script>
+                // Menu functions for onsen.io 
 
+                window.fn = {};
 
-    <!-- End Of Main Menu Header-->
+                window.fn.open = function () {
+                    var menu = document.getElementById('menu');
+                    menu.open();
+                };
 
-    <!-- Main Application HTML is here!!!!-->
-
-    <div id="content"></div>
-
-
-
-
-    <!-- End Of main Application  HTML -->
-
-
-    <script>
-        //Splash Screen Jquery
-        $(document).ready(function () {
-
-
-
-            $('#loading').delay(4000).fadeOut(1000);
-
-            // any startup JS here!
+                window.fn.load = function (page) {
+                    var content = document.getElementById('content');
+                    var menu = document.getElementById('menu');
+                    content.load(page)
+                        .then(menu.close.bind(menu));
+                };
+            </script>
+        </ons-page>
+    </template>
 
 
 
-        });
-    </script>
+    <template id="parameters.html">
+        <ons-page id="parameters">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button id="close" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41)" icon="md-close"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div style="font-family: 'Comfortaa', cursive; margin-right: 5% " class="right">
+                    parameters
+                </div>
+            </ons-toolbar>
 
-    <script>
-        // notification area
+            <!--  Drop downs for the paramters -->
 
-        const successfulNotify = window.createNotification({
+            <div class="ui padded container">
+                <div class="ui hidden divider"></div>
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Token Entry
+                </h5>
 
-            // close on click
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Token
+                        </div>
+                        <input id="setToken" type="text" placeholder="VRT/CR/MX">
+                    </div>
+                </a>
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Market
+                </h5>
+                <a class="item">
 
-            closeOnClick: true,
+                    <div class="ui small fluid selection dropdown" id="Marketdropdown">
 
-            showDuration: 3500,
-            positionClass: 'nfc-bottom-right',
+                        <div id="marketSelect" class="text">Select Market</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div id="Auto" data-value="Auto" class="item">Auto-Select Market</div>
+                            <div id="R_10" data-value="R_10" class="item">Volatility Index 10</div>
+                            <div id="R_25" data-value="R_25" class="item">Volatility Index 25</div>
+                            <div id="R_50" data-value="R_50" class="item">Volatility Index 50</div>
+                            <div id="R_75" data-value="R_75" class="item">Volatility Index 75</div>
+                            <div id="R_100" data-value="R_100" class="item">Volatility Index 100</div>
+                            <div id="RDBEAR" data-value="RDBEAR" class="item">Bear Market Index</div>
+                            <div id="RDBULL" data-value="RDBULL" class="item">Bull Market Index</div>
 
-            theme: 'success'
-
-
-        });
-
-        const errorNotify = window.createNotification({
-
-            // close on click
-
-            closeOnClick: true,
-
-            showDuration: 3500,
-            positionClass: 'nfc-bottom-right',
-
-            theme: 'error'
-
-
-        });
-
-        // Electron Reload Settings
-
-        var reload = () => {
-            getCurrentWindow().reload()
-        }
-
-        globalShortcut.register('F5', reload);
-        globalShortcut.register('CommandOrControl+R', reload);
-        // here is the fix bug #3778, if you know alternative ways, please write them
-        window.addEventListener('beforeunload', () => {
-            globalShortcut.unregister('F5', reload);
-            globalShortcut.unregister('CommandOrControl+R', reload);
-        })
-
-
-
-
-
-
-
-        //Menu load functions
-
-        document.getElementById('button1').addEventListener('click', function (event) {
-
-            $('#content').load("first_page.html");
-
-        });
-
-        document.getElementById('button2').addEventListener('click', function (event) {
-
-            $('#content').load("second_page.html");
-
-        });
+                        </div>
+                    </div>
 
 
-        document.getElementById('button3').addEventListener('click', function (event) {
+                </a>
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Stake & Stops
+                </h5>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Stake
+                        </div>
+                        <input id="setStake" type="text" placeholder=" e.g. 0.35">
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Stop Loss
+                        </div>
+                        <input id="setStopLoss" type="text" placeholder=" e.g. 300">
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Trailing Stop
+                        </div>
+                        <input id="setTrailingStop" type="text" placeholder=" e.g. 25">
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Take Profit
+                        </div>
+                        <input id="setTakeProfit" type="text" placeholder=" e.g. 50">
+                    </div>
+                </a>
 
-            $('#content').load("third_page.html");
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Progression Style
+                </h5>
 
-        });
+                <a class="item">
+                    <div class="ui small fluid selection dropdown" id="MMdropdown">
+                        <input name="MM Style" id="MMdataset">
+                        <i class="dropdown icon"></i>
+                        <div id="dropDownDefault" class="default text">Please Select</div>
+                        <div class="menu" id="currentMM">
+                            <div class="item" id="MGbasic" data-value="Martingale">Martingale</div>
+                            <div class="item" id="MGcum" data-value="Cum. Loss">Cum. Loss</div>
+                            <div class="item" id="MGladder" data-value="Ladder">Ladder</div>
+                            <div class="item" id="MGcompound" data-value="Compound">Compound</div>
+                            <div class="item" id="MGoscar" data-value="Oscar">Oscar's Grind</div>
+                            <div class="item" id="MGDAlembert" data-value="DAlembert">D'Alembert</div>
+                            <div class="item" id="MGnone" data-value="None">None (bad idea)</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            Manual Override after
+                        </div>
+                        <input id="setautolimit" type="text" placeholder=" e.g. 5">
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">
+                            MG/Compound Reset
+                        </div>
+                        <input id="mgreset" type="text" placeholder=" e.g. 7">
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
 
-        document.getElementById('rightButton1').addEventListener('click', function (event) {
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Auto Trading
+                </h5>
 
-            alert('Woop an alert!');
+                <a class="item">
+                    <div class="ui small fluid selection dropdown" id="Stratdropdown">
+                        <input name="ST Style" id="STdataset">
+                        <i class="dropdown icon"></i>
+                        <div id="strategyAuto" class="default text">Please Select</div>
+                        <div class="menu" id="currentST">
+                            <div id="PriceAction" data-value="priceAction" class="item">Price Action</div>
+                            <div id="HeikenAshi" data-value="HeikenAshi" class="item">Heiken Ashi Trends</div>
+                            <div id="HeikenMA" data-value="HeikenMA" class="item">Heiken Ashi MA</div>
+                            <div id="movingAverage" data-value="movingAverage" class="item">Moving Average Cross</div>
+                            <div id="adaptiveML" data-value="adaptiveML" class="item">
+                                Adaptive ML</div>
+                            <div id="PivotPoint" data-value="PivotPoint" class="item">Pivot Point Cross</div>
+                            <div id="SMAtrend" data-value="SMAtrend" class="item">SMA trend (20,5)</div>
+                        </div>
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
 
-        });
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <input id="durationIntAuto" type="number" placeholder="1-10 (t) | 15 + (s)">
+                        <div class="ui left dropdown label" id="TDdropdownAuto">
+                            <div id="curDurationAuto" class="text">period</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div id="durationTAuto" class="item">ticks (t)</div>
+                                <div id="durationSAuto" class="item">sec (s)</div>
+                                <div id="durationMAuto" class="item">min (m)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
+
+                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
+                    class="ui  horizontal divider header">
+                    Manual Trading
+                </h5>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <input id="durationInt" type="number" placeholder="1-10 (t) | 15 + (s)">
+                        <div class="ui left dropdown label" id="TDdropdown">
+                            <div id="curDuration" class="text">period</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div id="durationT" class="item">ticks (t)</div>
+                                <div id="durationS" class="item">sec (s)</div>
+                                <div id="durationM" class="item">min (m)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </a>
 
 
-        //End of Menu load functions
-    </script>
+                <div class="ui hidden divider"></div>
 
 
+
+
+
+                <a class="item">
+                    <div class="ui small fluid green submit button" id="saveParameters">Save Parameters</div>
+                </a>
+                <div class="ui hidden divider"></div>
+            </div>
+
+
+            <script>
+                // Jquery for parameters
+
+
+
+                $('#MMdropdown')
+                    .dropdown();
+
+                $('#TDdropdown')
+                    .dropdown();
+
+                $('#TDdropdownAuto')
+                    .dropdown();
+
+                $('#Stratdropdown')
+                    .dropdown();
+
+                $('#Marketdropdown')
+                    .dropdown();
+            </script>
+
+        </ons-page>
+
+    </template>
 
 </body>
+
+<!-- Insert this line above script imports  -->
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
+</script>
+
+<script>
+    $('#loading').delay(3000).fadeOut(1000);
+</script>
+
+<script>
+    document.addEventListener('init', function (event) {
+        var page = event.target;
+
+        if (page.id === 'bot') {
+            page.querySelector('#settings').onclick = function () {
+                document.querySelector('#myNavigator').pushPage('parameters.html');
+            };
+        }
+        if (page.id === 'parameters') {
+            page.querySelector('#close').onclick = function () {
+                document.querySelector('#myNavigator').popPage();
+            };
+        }
+        if (page.id === 'parameters') {
+            page.querySelector('#saveParameters').onclick = function () {
+                document.querySelector('#myNavigator').popPage();
+            };
+        }
+
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Electron Reload Settings
+
+    var reload = () => {
+        getCurrentWindow().reload()
+    }
+
+    globalShortcut.register('F5', reload);
+    globalShortcut.register('CommandOrControl+R', reload);
+    // here is the fix bug #3778, if you know alternative ways, please write them
+    window.addEventListener('beforeunload', () => {
+        globalShortcut.unregister('F5', reload);
+        globalShortcut.unregister('CommandOrControl+R', reload);
+    })
+</script>
+
 
 
 

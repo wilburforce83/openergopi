@@ -33,12 +33,12 @@ function createWindow() {
   var mainScreen = screenElectron.getPrimaryDisplay();
 
   // Scale display on small screens
-  let width = mainScreen['size']['width'];
-  let height = mainScreen['size']['height'];
+  let width = 320; //mainScreen['size']['width'];
+  let height = 480; //mainScreen['size']['height'];
   console.log(width, height);
   var zoomFactor;
   if (height <= 768) {
-    zoomFactor = 0.815;
+    zoomFactor = 0.6;
   } else {
     zoomFactor = 1;
   }
@@ -49,19 +49,20 @@ function createWindow() {
     parent: true,
     show: false,
     frame: true,
-    minWidth: 1300,
-    minHeight: 730,
+    height: 480,
+    width: 320,
+
     webPreferences: {
       zoomFactor: zoomFactor,
     },
 
-    maximizable: true,
+    maximizable: false, //JUST FOR TESTING ON BIGGER SCREENS
     webviewTag: true,
     icon: __dirname + '/Icon/icon.ico'
   })
   //Create welcome window to add API keys, if none are saved to be called AFTER app.on READY with .then
 
-  win.maximize()
+  //win.maximize()
 
   // and load the index.html of the app.
   //
