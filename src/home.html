@@ -113,22 +113,53 @@
     <template id="bot.html">
 
         <ons-page id="bot">
-            <ons-toolbar>
+            <ons-toolbar modifier="transparent">
 
                 <div class="left">
                     <ons-toolbar-button id="settings" tappable>
-                        <ons-icon style="color: rgb(7, 18, 41)" icon="md-settings"></ons-icon>
+                        <ons-icon style="color: rgb(7, 18, 41); font-size: larger;" icon="md-settings"></ons-icon>
                     </ons-toolbar-button>
                 </div>
-                <div style="margin-right: 5% " class="right">
-                    OpenErgo
+                <div class="center" style="font-size:small;">OpenErgo</div>
+                <div class="right">
+                    <ons-toolbar-button id="reset" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41); font-size: larger;" icon="md-replay"></ons-icon>
+                    </ons-toolbar-button>
                 </div>
-
             </ons-toolbar>
 
 
             <div style=" margin:7px" class=" container">
 
+                <div class="ui two statistics">
+                    <div class="statistic">
+                        <div id="SPM" class="value">
+                            27
+                        </div>
+                        <div class="label">
+                            SPM
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div id="500mSplit" class="value">
+                            1:48
+                        </div>
+                        <div class="label">
+                            Pace (500M)
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="ui horizontal divider">
+                    Distance
+                </h4>
+                <div class="ui one small statistics">
+                    <div class="statistic">
+                        <div id="distance" class="value">
+                            4,567m
+                        </div>
+                    </div>
+                </div>
             </div>
 
 

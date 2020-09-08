@@ -38,7 +38,7 @@ function createWindow() {
   console.log(width, height);
   var zoomFactor;
   if (height <= 768) {
-    zoomFactor = 0.6;
+    zoomFactor = 0.65;
   } else {
     zoomFactor = 1;
   }
@@ -49,8 +49,8 @@ function createWindow() {
     parent: true,
     show: false,
     frame: true,
-    height: 480,
-    width: 320,
+    height: 320,
+    width: 240,
 
     webPreferences: {
       zoomFactor: zoomFactor,
