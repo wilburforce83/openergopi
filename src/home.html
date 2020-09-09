@@ -95,7 +95,7 @@
 
             <h5 class="ui center aligned black header">
 
-                <div style="font-family: 'Comfortaa', cursive; font-size: 0.7em" class="content">
+                <div style=" font-size: 0.7em" class="content">
                     V0.001 OpenErgo | Opensource Ergo Monitor.
                     <div class="black sub header"></div>
                 </div>
@@ -148,40 +148,40 @@
                             Pace (500M)
                         </div>
                     </div>
-                    
+
                 </div>
-               
+
             </div>
             <div style=" margin:7px" class=" container">
 
-            <h4 class="ui horizontal divider">
-              
-            </h4>
+                <h4 class="ui horizontal divider">
 
-            <div class="ui two tiny statistics">
-                <div class="statistic">
-                    <div id="Power" class="value">
-                        621W
-                   
-                    </div>
-                    <div class="label">
-                        Power
-                    </div>
-                </div>
+                </h4>
 
-               
-                <div class="statistic">
-                    <div id="Distance" class="value">
-                        1,255 m
+                <div class="ui two tiny statistics">
+                    <div class="statistic">
+                        <div id="Power" class="value">
+                            621W
+
+                        </div>
+                        <div class="label">
+                            Power
+                        </div>
                     </div>
-                    <div class="label">
-                        Distance
+
+
+                    <div class="statistic">
+                        <div id="Distance" class="value">
+                            1,255 m
+                        </div>
+                        <div class="label">
+                            Distance
+                        </div>
+
                     </div>
-                   
+
                 </div>
-               
             </div>
-        </div>
 
 
 
@@ -215,194 +215,58 @@
                         <ons-icon style="color: rgb(7, 18, 41)" icon="md-close"></ons-icon>
                     </ons-toolbar-button>
                 </div>
-                <div style="font-family: 'Comfortaa', cursive; margin-right: 5% " class="right">
-                    parameters
+                <div style=" margin-right: 5% " class="right">
+                    Settings
                 </div>
             </ons-toolbar>
 
             <!--  Drop downs for the paramters -->
 
             <div class="ui padded container">
-                <div class="ui hidden divider"></div>
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Token Entry
-                </h5>
 
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <div class="ui label">
-                            Token
-                        </div>
-                        <input id="setToken" type="text" placeholder="VRT/CR/MX">
-                    </div>
-                </a>
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Market
+                <h5 style="color: black;font-weight: 200;" class="ui  horizontal divider header">
+                    Workout
                 </h5>
                 <a class="item">
 
                     <div class="ui small fluid selection dropdown" id="Marketdropdown">
 
-                        <div id="marketSelect" class="text">Select Market</div>
+                        <div id="workoutSelect"></div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
-                            <div id="Auto" data-value="Auto" class="item">Auto-Select Market</div>
-                            <div id="R_10" data-value="R_10" class="item">Volatility Index 10</div>
-                            <div id="R_25" data-value="R_25" class="item">Volatility Index 25</div>
-                            <div id="R_50" data-value="R_50" class="item">Volatility Index 50</div>
-                            <div id="R_75" data-value="R_75" class="item">Volatility Index 75</div>
-                            <div id="R_100" data-value="R_100" class="item">Volatility Index 100</div>
-                            <div id="RDBEAR" data-value="RDBEAR" class="item">Bear Market Index</div>
-                            <div id="RDBULL" data-value="RDBULL" class="item">Bull Market Index</div>
+                            <div id="JustRow" data-value="JustRow" class="item">Just Row</div>
+                            <div id="Power10s" data-value="Power10s" class="item">Power 10s</div>
+                            <div id="Tabata" data-value="Tabata" class="item">Tabata</div>
+                            <div id="TT2000" data-value="TT2000" class="item">Time Trial (2k)</div>
+                            <div id="TT5000" data-value="TT5000" class="item">Time Trial (5k)</div>
+                            <div id="500Mintervals" data-value="500Mintervals" class="item">500M Intervals</div>
+                            <div id="Pyramid" data-value="Pyramid" class="item">Descending Pyramid</div>
 
                         </div>
                     </div>
 
 
                 </a>
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Stake & Stops
+                <h5 style="color: black;font-weight: 200;" class="ui  horizontal divider header">
+                    Ergometer Settings
                 </h5>
                 <a class="item">
                     <div class="ui small fluid labeled input">
                         <div class="ui label">
-                            Stake
+                            I (kg m<sup>2</sup>)
                         </div>
-                        <input id="setStake" type="text" placeholder=" e.g. 0.35">
+                        <input id="momentOfInteria" type="text" placeholder="default: 0.16">
                     </div>
                 </a>
                 <div class="ui hidden divider"></div>
                 <a class="item">
                     <div class="ui small fluid labeled input">
                         <div class="ui label">
-                            Stop Loss
+                            Sensor Radius (mm)
                         </div>
-                        <input id="setStopLoss" type="text" placeholder=" e.g. 300">
+                        <input id="sensorRadius" type="text" placeholder=" e.g. 100">
                     </div>
                 </a>
-                <div class="ui hidden divider"></div>
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <div class="ui label">
-                            Trailing Stop
-                        </div>
-                        <input id="setTrailingStop" type="text" placeholder=" e.g. 25">
-                    </div>
-                </a>
-                <div class="ui hidden divider"></div>
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <div class="ui label">
-                            Take Profit
-                        </div>
-                        <input id="setTakeProfit" type="text" placeholder=" e.g. 50">
-                    </div>
-                </a>
-
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Progression Style
-                </h5>
-
-                <a class="item">
-                    <div class="ui small fluid selection dropdown" id="MMdropdown">
-                        <input name="MM Style" id="MMdataset">
-                        <i class="dropdown icon"></i>
-                        <div id="dropDownDefault" class="default text">Please Select</div>
-                        <div class="menu" id="currentMM">
-                            <div class="item" id="MGbasic" data-value="Martingale">Martingale</div>
-                            <div class="item" id="MGcum" data-value="Cum. Loss">Cum. Loss</div>
-                            <div class="item" id="MGladder" data-value="Ladder">Ladder</div>
-                            <div class="item" id="MGcompound" data-value="Compound">Compound</div>
-                            <div class="item" id="MGoscar" data-value="Oscar">Oscar's Grind</div>
-                            <div class="item" id="MGDAlembert" data-value="DAlembert">D'Alembert</div>
-                            <div class="item" id="MGnone" data-value="None">None (bad idea)</div>
-                        </div>
-                    </div>
-                </a>
-                <div class="ui hidden divider"></div>
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <div class="ui label">
-                            Manual Override after
-                        </div>
-                        <input id="setautolimit" type="text" placeholder=" e.g. 5">
-                    </div>
-                </a>
-                <div class="ui hidden divider"></div>
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <div class="ui label">
-                            MG/Compound Reset
-                        </div>
-                        <input id="mgreset" type="text" placeholder=" e.g. 7">
-                    </div>
-                </a>
-                <div class="ui hidden divider"></div>
-
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Auto Trading
-                </h5>
-
-                <a class="item">
-                    <div class="ui small fluid selection dropdown" id="Stratdropdown">
-                        <input name="ST Style" id="STdataset">
-                        <i class="dropdown icon"></i>
-                        <div id="strategyAuto" class="default text">Please Select</div>
-                        <div class="menu" id="currentST">
-                            <div id="PriceAction" data-value="priceAction" class="item">Price Action</div>
-                            <div id="HeikenAshi" data-value="HeikenAshi" class="item">Heiken Ashi Trends</div>
-                            <div id="HeikenMA" data-value="HeikenMA" class="item">Heiken Ashi MA</div>
-                            <div id="movingAverage" data-value="movingAverage" class="item">Moving Average Cross</div>
-                            <div id="adaptiveML" data-value="adaptiveML" class="item">
-                                Adaptive ML</div>
-                            <div id="PivotPoint" data-value="PivotPoint" class="item">Pivot Point Cross</div>
-                            <div id="SMAtrend" data-value="SMAtrend" class="item">SMA trend (20,5)</div>
-                        </div>
-                    </div>
-                </a>
-                <div class="ui hidden divider"></div>
-
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <input id="durationIntAuto" type="number" placeholder="1-10 (t) | 15 + (s)">
-                        <div class="ui left dropdown label" id="TDdropdownAuto">
-                            <div id="curDurationAuto" class="text">period</div>
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <div id="durationTAuto" class="item">ticks (t)</div>
-                                <div id="durationSAuto" class="item">sec (s)</div>
-                                <div id="durationMAuto" class="item">min (m)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </a>
-
-                <h5 style="color: black;font-weight: 200;font-family: 'Comfortaa', cursive;"
-                    class="ui  horizontal divider header">
-                    Manual Trading
-                </h5>
-                <a class="item">
-                    <div class="ui small fluid labeled input">
-                        <input id="durationInt" type="number" placeholder="1-10 (t) | 15 + (s)">
-                        <div class="ui left dropdown label" id="TDdropdown">
-                            <div id="curDuration" class="text">period</div>
-                            <i class="dropdown icon"></i>
-                            <div class="menu">
-                                <div id="durationT" class="item">ticks (t)</div>
-                                <div id="durationS" class="item">sec (s)</div>
-                                <div id="durationM" class="item">min (m)</div>
-                            </div>
-                        </div>
-                    </div>
-
-                </a>
-
 
                 <div class="ui hidden divider"></div>
 
@@ -411,32 +275,10 @@
 
 
                 <a class="item">
-                    <div class="ui small fluid green submit button" id="saveParameters">Save Parameters</div>
+                    <div class="ui massive fluid green submit button" id="saveParameters">Save Parameters</div>
                 </a>
                 <div class="ui hidden divider"></div>
             </div>
-
-
-            <script>
-                // Jquery for parameters
-
-
-
-                $('#MMdropdown')
-                    .dropdown();
-
-                $('#TDdropdown')
-                    .dropdown();
-
-                $('#TDdropdownAuto')
-                    .dropdown();
-
-                $('#Stratdropdown')
-                    .dropdown();
-
-                $('#Marketdropdown')
-                    .dropdown();
-            </script>
 
         </ons-page>
 

@@ -47,27 +47,3 @@ function buildDropdown(elementID, arr) {
     };
 
 };
-
-function getProductCodes() {
-
-
-
-    var papaCSV = p + '/pricing.csv';
-    Papa.parse(papaCSV, {
-        header: true,
-        download: true,
-        skipEmptyLines: true,
-        complete: function (results) {
-            console.log(results.data);
-
-            let d = results.data;
-            productData = results.data;
-
-            let codelist = removeFalsy(d.map(data => data.product_code));
-            console.log(codelist)
-            settings.set('productcode.list', codelist);
-            return codelist;
-
-        }
-    })
-}

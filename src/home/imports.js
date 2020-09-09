@@ -34,8 +34,6 @@
  } = require('electron').remote;
  var fileUrl = require('file-url');
  var p = settings.get('database.location');
- var Chart = require('chart.js');
- var Papa = require('papaparse');
  const open = require('open');
  var flatten = require('flat')
  const _ = require('lodash')
