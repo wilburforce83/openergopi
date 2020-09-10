@@ -5,6 +5,8 @@
 var lastRevolution = 0;
 var lastOmega = 0;
 var omega = 0;
+var strokePeriod = 0;
+var recoveryPeriod = 0;
 window.onkeypress = function (event) {
     if (event.keyCode == 32) { // spacebar
 
@@ -20,6 +22,16 @@ window.onkeypress = function (event) {
         let b = angularAcceleration(lastOmega, omega, t);
         lastOmega = omega;
         console.log("b =", b, " rad/s^2")
+
+        // Power or Recovery
+
+        if (b > 0) {
+            strokePeriod = strokePeriod + t;
+
+            recoveryPeriod = 0;
+        } else {
+
+        }
 
     }
 };
