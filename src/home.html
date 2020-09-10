@@ -1,25 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Import styling frameworks-->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>OpenErgo</title>
-    <link
-      rel="stylesheet"
-      href="../assets/Semantic-UI-CSS-master/semantic.min.css"
-    />
+    <link rel="stylesheet" href="../assets/Semantic-UI-CSS-master/semantic.min.css" />
     <link rel="stylesheet" href="../lib/onsen/css/onsenui.css" />
-    <link
-      rel="stylesheet"
-      href="../lib/onsen/css/onsen-css-components.min.css"
-    />
+    <link rel="stylesheet" href="../lib/onsen/css/onsen-css-components.min.css" />
     <link rel="stylesheet" href="../assets/jquery.dynatable.css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="../assets/notifications/notifications.css" />
     <link rel="stylesheet" href="../assets/jquery-ui.css" />
@@ -28,10 +20,10 @@
 
     <!-- Insert this line above script imports  -->
     <script>
-      if (typeof module === "object") {
-        window.module = module;
-        module = undefined;
-      }
+        if (typeof module === "object") {
+            window.module = module;
+            module = undefined;
+        }
     </script>
     <script src="../assets/jquery.min.js"></script>
     <script src="../assets/jquery-ui.js"></script>
@@ -39,6 +31,10 @@
     <script src="../lib/onsen/js/onsenui.min.js"></script>
 
     <script src="../src/home/imports.js"></script>
+    <script src="../src/home/ergo.js"></script>
+    <script src="../src/home/GPIO.js"></script>
+    <script src="../src/home/newtonian.js"></script>
+    <script src="../src/home/workouts.js"></script>
     <script src="../assets/notifications/notifications.js"></script>
     <script src="../src/home/utils.js"></script>
     <script src="../assets/jquery.dynatable.js"></script>
@@ -49,171 +45,157 @@
 
     <!-- Insert this line after script imports -->
     <script>
-      if (window.module) module = window.module;
+        if (window.module) module = window.module;
     </script>
 
     <style>
-      .overlay {
-        position: absolute;
-        top: 13%;
-        /* position the top  edge of the element at the middle of the parent */
-        left: 40%;
-        /* position the left edge of the element at the middle of the parent */
+        .overlay {
+            position: absolute;
+            top: 13%;
+            /* position the top  edge of the element at the middle of the parent */
+            left: 40%;
+            /* position the left edge of the element at the middle of the parent */
 
-        z-index: 1000;
+            z-index: 1000;
 
-        /*dim the background*/
-      }
+            /*dim the background*/
+        }
 
-      h5 {
-        color: rgb(32, 32, 32);
-      }
+        h5 {
+            color: rgb(32, 32, 32);
+        }
 
-      #loading {
-        margin: 0;
-        position: fixed;
+        #loading {
+            margin: 0;
+            position: fixed;
 
-        width: 100%;
-        height: 100vh;
+            width: 100%;
+            height: 100vh;
 
-        background: rgb(255, 255, 255) url("../assets/images/Loading.gif")
-          no-repeat center center;
-        z-index: 150000;
-      }
+            background: rgb(255, 255, 255) url("../assets/images/Loading.gif") no-repeat center center;
+            z-index: 150000;
+        }
 
-      #loadingfooter {
-        position: absolute;
-        bottom: 0%;
-        width: 100%;
-        z-index: 160000;
-      }
+        #loadingfooter {
+            position: absolute;
+            bottom: 0%;
+            width: 100%;
+            z-index: 160000;
+        }
     </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <div id="loading">
-      <div id="loadingfooter">
-        <h5 class="ui center aligned black header">
-          <div style="font-size: 0.7em" class="content">
-            V0.001 OpenErgo | Opensource Ergo Monitor.
-            <div class="black sub header"></div>
-          </div>
-        </h5>
-        <div class="ui hidden divider"></div>
-      </div>
+        <div id="loadingfooter">
+            <h5 class="ui center aligned black header">
+                <div style="font-size: 0.7em" class="content">
+                    V0.001 OpenErgo | Opensource Ergo Monitor.
+                    <div class="black sub header"></div>
+                </div>
+            </h5>
+            <div class="ui hidden divider"></div>
+        </div>
     </div>
 
     <ons-navigator swipeable id="myNavigator" page="bot.html"></ons-navigator>
 
     <template id="bot.html">
-      <ons-page id="bot">
-        <ons-toolbar modifier="transparent">
-          <div class="left">
-            <ons-toolbar-button id="settings" tappable>
-              <ons-icon
-                style="color: rgb(7, 18, 41); font-size: larger"
-                icon="md-settings"
-              ></ons-icon>
-            </ons-toolbar-button>
-          </div>
-          <div class="center" style="font-size: small">OpenErgo</div>
-          <div class="right">
-            <ons-toolbar-button id="reset" tappable>
-              <ons-icon
-                style="color: rgb(7, 18, 41); font-size: larger"
-                icon="md-replay"
-              ></ons-icon>
-            </ons-toolbar-button>
-          </div>
-        </ons-toolbar>
+        <ons-page id="bot">
+            <ons-toolbar modifier="transparent">
+                <div class="left">
+                    <ons-toolbar-button id="settings" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41); font-size: larger" icon="md-settings"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div class="center" style="font-size: small">OpenErgo</div>
+                <div class="right">
+                    <ons-toolbar-button id="reset" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41); font-size: larger" icon="md-replay"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+            </ons-toolbar>
 
-        <div style="margin: 7px; max-height: 30%" class="container">
-          <div class="ui two statistics">
-            <div class="statistic">
-              <div id="SPM" class="value">27</div>
-              <div class="label">SPM</div>
+            <div style="margin: 7px; max-height: 30%" class="container">
+                <div class="ui two statistics">
+                    <div class="statistic">
+                        <div id="SPM" class="value">27</div>
+                        <div class="label">SPM</div>
+                    </div>
+                    <div class="statistic">
+                        <div id="500mSplit" class="value">1:48</div>
+                        <div class="label">Pace (500M)</div>
+                    </div>
+                </div>
             </div>
-            <div class="statistic">
-              <div id="500mSplit" class="value">1:48</div>
-              <div class="label">Pace (500M)</div>
+            <div style="margin: 7px" class="container">
+                <h4 class="ui horizontal divider"></h4>
+
+                <div class="ui two tiny statistics">
+                    <div class="statistic">
+                        <div id="Power" class="value">621W</div>
+                        <div class="label">Power</div>
+                    </div>
+
+                    <div class="statistic">
+                        <div id="Distance" class="value">1,255 m</div>
+                        <div class="label">Distance</div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div style="margin: 7px" class="container">
-          <h4 class="ui horizontal divider"></h4>
-
-          <div class="ui two tiny statistics">
-            <div class="statistic">
-              <div id="Power" class="value">621W</div>
-              <div class="label">Power</div>
+            <div style="margin: 7px" class=" padded container">
+                <button id="workout" class="ui blue fluid button">Change Workout</button>
             </div>
 
-            <div class="statistic">
-              <div id="Distance" class="value">1,255 m</div>
-              <div class="label">Distance</div>
-            </div>
-          </div>
-        </div>
-        <div style="margin: 7px" class=" padded container">
-            <button id="workout"class="ui blue fluid button">Change Workout</button>
-        </div>
-        
-        <h6 class="ui horizontal divider header">
-            <i class="bar chart icon"></i>
-            Workout Details
-          </h6>
+            <h6 class="ui horizontal divider header">
+                <i class="bar chart icon"></i>
+                Workout Details
+            </h6>
 
-        <script>
-          // Menu functions for onsen.io
+            <script>
+                // Menu functions for onsen.io
 
-          window.fn = {};
+                window.fn = {};
 
-          window.fn.open = function () {
-            var menu = document.getElementById("menu");
-            menu.open();
-          };
+                window.fn.open = function () {
+                    var menu = document.getElementById("menu");
+                    menu.open();
+                };
 
-          window.fn.load = function (page) {
-            var content = document.getElementById("content");
-            var menu = document.getElementById("menu");
-            content.load(page).then(menu.close.bind(menu));
-          };
+                window.fn.load = function (page) {
+                    var content = document.getElementById("content");
+                    var menu = document.getElementById("menu");
+                    content.load(page).then(menu.close.bind(menu));
+                };
 
-           // run workout model
-    document.getElementById('workout').addEventListener('click', function (event) {
-    
-    $(".ui.basic.modal").modal("show");
-  });
+                // run workout model
+                document.getElementById('workout').addEventListener('click', function (event) {
 
-        </script>
-      </ons-page>
+                    $(".ui.basic.modal").modal("show");
+                });
+            </script>
+        </ons-page>
     </template>
 
     <template id="parameters.html">
-      <ons-page id="parameters">
-        <ons-toolbar>
-          <div class="left">
-            <ons-toolbar-button id="close" tappable>
-              <ons-icon
-                style="color: rgb(7, 18, 41)"
-                icon="md-close"
-              ></ons-icon>
-            </ons-toolbar-button>
-          </div>
-          <div style="margin-right: 5%" class="right">Settings</div>
-        </ons-toolbar>
+        <ons-page id="parameters">
+            <ons-toolbar>
+                <div class="left">
+                    <ons-toolbar-button id="close" tappable>
+                        <ons-icon style="color: rgb(7, 18, 41)" icon="md-close"></ons-icon>
+                    </ons-toolbar-button>
+                </div>
+                <div style="margin-right: 5%" class="right">Settings</div>
+            </ons-toolbar>
 
-        <!--  Drop downs for the paramters -->
+            <!--  Drop downs for the paramters -->
 
-        <div class="ui padded container">
-          <h5
-            style="color: black; font-weight: 200"
-            class="ui horizontal divider header"
-          >
-            Workout
-          </h5>
-          <a class="item">
-            <!--<div class="ui small fluid selection dropdown" id="Workoutdropdown">
+            <div class="ui padded container">
+                <h5 style="color: black; font-weight: 200" class="ui horizontal divider header">
+                    Workout
+                </h5>
+                <a class="item">
+                    <!--<div class="ui small fluid selection dropdown" id="Workoutdropdown">
 
                         <div id="workoutSelect"></div>
                         <i class="dropdown icon"></i>
@@ -229,118 +211,108 @@
                         </div>
                     </div>
                 -->
-          </a>
-          <h5
-            style="color: black; font-weight: 200"
-            class="ui horizontal divider header"
-          >
-            Ergometer Settings
-          </h5>
-          <a class="item">
-            <div class="ui small fluid labeled input">
-              <div class="ui label">I (kg m<sup>2</sup>)</div>
-              <input
-                id="momentOfInteria"
-                type="text"
-                placeholder="default: 0.16"
-              />
-            </div>
-          </a>
-          <div class="ui hidden divider"></div>
-          <a class="item">
-            <div class="ui small fluid labeled input">
-              <div class="ui label">Sensor Radius (mm)</div>
-              <input id="sensorRadius" type="text" placeholder=" e.g. 100" />
-            </div>
-          </a>
+                </a>
+                <h5 style="color: black; font-weight: 200" class="ui horizontal divider header">
+                    Ergometer Settings
+                </h5>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">I (kg m<sup>2</sup>)</div>
+                        <input id="momentOfInteria" type="text" placeholder="default: 0.16" />
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
+                <a class="item">
+                    <div class="ui small fluid labeled input">
+                        <div class="ui label">Sensor Radius (mm)</div>
+                        <input id="sensorRadius" type="text" placeholder=" e.g. 100" />
+                    </div>
+                </a>
 
-          <div class="ui hidden divider"></div>
+                <div class="ui hidden divider"></div>
 
-          <a class="item">
-            <div
-              class="ui massive fluid green submit button"
-              id="saveParameters"
-            >
-              Save Parameters
+                <a class="item">
+                    <div class="ui massive fluid green submit button" id="saveParameters">
+                        Save Parameters
+                    </div>
+                </a>
+                <div class="ui hidden divider"></div>
             </div>
-          </a>
-          <div class="ui hidden divider"></div>
-        </div>
 
-        <script>
-          $("#Workoutdropdown").dropdown();
-        </script>
-      </ons-page>
+            <script>
+                $("#Workoutdropdown").dropdown();
+            </script>
+        </ons-page>
     </template>
 
     <div class="ui basic modal">
-      <div class="ui icon header">
-        <i class="archive icon"></i>
-        OpenErgo Workouts
-      </div>
-      <div class="content">
-        <button class="ui orange fluid button">Just Row</button>
-        <button class="ui yellow fluid button">Power 10s</button>
-        <button class="ui olive fluid button">Tabata</button>
-        <button class="ui green fluid button">2k TT</button>
-        <button class="ui teal fluid button">5k TT</button>
-        <button class="ui blue fluid button">500m Intervals</button>
-        <button class="ui violet fluid button">Pyramid</button>
-      </div>
+        <div class="ui icon header">
+            <i class="archive icon"></i>
+            OpenErgo Workouts
+        </div>
+        <div class="content">
+            <button class="ui orange fluid button">Just Row</button>
+            <button class="ui yellow fluid button">Power 10s</button>
+            <button class="ui olive fluid button">Tabata</button>
+            <button class="ui green fluid button">2k TT</button>
+            <button class="ui teal fluid button">5k TT</button>
+            <button class="ui blue fluid button">500m Intervals</button>
+            <button class="ui violet fluid button">Pyramid</button>
+        </div>
     </div>
-  </body>
+</body>
 
-  <!-- Insert this line above script imports  -->
-  <script>
+<!-- Insert this line above script imports  -->
+<script>
     if (typeof module === "object") {
-      window.module = module;
-      module = undefined;
+        window.module = module;
+        module = undefined;
     }
-  </script>
+</script>
 
-  <!-- Insert this line after script imports -->
-  <script>
+<!-- Insert this line after script imports -->
+<script>
     if (window.module) module = window.module;
-  </script>
+</script>
 
-  <script>
+<script>
     $("#loading").delay(3000).fadeOut(1000);
-  </script>
+</script>
 
-  <script>
-   
+<script>
     document.addEventListener("init", function (event) {
-      var page = event.target;
+        var page = event.target;
 
-      if (page.id === "bot") {
-        page.querySelector("#settings").onclick = function () {
-          document.querySelector("#myNavigator").pushPage("parameters.html");
-        };
-      }
-      if (page.id === "parameters") {
-        page.querySelector("#close").onclick = function () {
-          document.querySelector("#myNavigator").popPage();
-        };
-      }
-      if (page.id === "parameters") {
-        page.querySelector("#saveParameters").onclick = function () {
-          document.querySelector("#myNavigator").popPage();
-        };
-      }
+        if (page.id === "bot") {
+            page.querySelector("#settings").onclick = function () {
+                document.querySelector("#myNavigator").pushPage("parameters.html");
+            };
+        }
+        if (page.id === "parameters") {
+            page.querySelector("#close").onclick = function () {
+                document.querySelector("#myNavigator").popPage();
+            };
+        }
+        if (page.id === "parameters") {
+            page.querySelector("#saveParameters").onclick = function () {
+                document.querySelector("#myNavigator").popPage();
+            };
+        }
     });
 
     // Electron Reload Settings
 
     var reload = () => {
-      getCurrentWindow().reload();
+        getCurrentWindow().reload();
     };
 
     globalShortcut.register("F5", reload);
     globalShortcut.register("CommandOrControl+R", reload);
     // here is the fix bug #3778, if you know alternative ways, please write them
     window.addEventListener("beforeunload", () => {
-      globalShortcut.unregister("F5", reload);
-      globalShortcut.unregister("CommandOrControl+R", reload);
+        globalShortcut.unregister("F5", reload);
+        globalShortcut.unregister("CommandOrControl+R", reload);
     });
-  </script>
+</script>
+
 </html>
